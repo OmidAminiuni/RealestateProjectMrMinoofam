@@ -117,14 +117,14 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="602.0" layoutY="105.0" prefHeight="369.0" prefWidth="442.0">
+      <TableView fx:id="tableView1" layoutX="602.0" layoutY="105.0" prefHeight="369.0" prefWidth="442.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Owner" />
-          <TableColumn prefWidth="75.0" text="Area" />
-            <TableColumn prefWidth="75.0" text="Type" />
-            <TableColumn prefWidth="75.0" text="Address" />
-            <TableColumn prefWidth="75.0" text="Price" />
-            <TableColumn prefWidth="68.0" text="Date" />
+          <TableColumn fx:id="owner" prefWidth="75.0" text="Owner" />
+          <TableColumn fx:id="area" prefWidth="75.0" text="Area" />
+            <TableColumn fx:id="Type" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="address" prefWidth="75.0" text="Address" />
+            <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="date" prefWidth="68.0" text="Date" />
         </columns>
       </TableView>
       <Label layoutX="277.0" layoutY="263.0" text="Address">
