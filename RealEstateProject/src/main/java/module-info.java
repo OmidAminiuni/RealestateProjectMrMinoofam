@@ -6,4 +6,7 @@ module com.realestateproject.realestateproject {
 
     opens com.realestateproject.realestateproject to javafx.fxml;
     exports com.realestateproject.realestateproject;
+    opens com.realestateproject.realestateproject.Model to javafx.fxml;
+    exports com.realestateproject.realestateproject.Model;
+
 }

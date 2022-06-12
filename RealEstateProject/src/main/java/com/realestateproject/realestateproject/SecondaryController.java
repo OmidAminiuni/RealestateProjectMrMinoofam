@@ -30,6 +30,10 @@ public class SecondaryController implements Initializable{
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
+    @FXML
+    private void switchToClient() throws IOException {
+        App.setRoot("Clients");
+    }
     
    
     @FXML private ChoiceBox<String> myChoiceBox;
@@ -37,19 +41,22 @@ public class SecondaryController implements Initializable{
     private String[] type = {"Land","New-built House","Older than 5YO House"};
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {		
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         myChoiceBox.getItems().addAll(type);
-        owner.setCellValueFactory(new PropertyValueFactory<>("landArea"));
+//        owner.setCellValueFactory(new PropertyValueFactory<>("landArea"));
         area.setCellValueFactory(new PropertyValueFactory<>("landArea"));
         Type.setCellValueFactory(new PropertyValueFactory<>("landType"));
         address.setCellValueFactory(new PropertyValueFactory<>("landAddress"));
         price.setCellValueFactory(new PropertyValueFactory<>("landPrice"));
         //date.setCellValueFactory(new PropertyValueFactory<>("ProductQuantity"));
+
+        ObservableList<Land> observableList = FXCollections.observableArrayList(
+                new Land(1,"2500","land","west",1000,1)
+        );
         tableView1.setItems(observableList);
     }
-    ObservableList<Land> observableList = FXCollections.observableArrayList(
-            new Land(1,"2500","land","west",1000,1)
-    );
+
+
     
     @FXML
     private void switchToBar() throws IOException {

@@ -1,12 +1,12 @@
 package com.realestateproject.realestateproject.Model;
 
 public class Land {
-    private int landID;
-    private String landArea;
-    private String landType;
-    private String landAddress;
-    private int landPrice;
-    private int isAvailable;
+    public int landID;
+    public String landArea;
+    public String landType;
+    public String landAddress;
+    public int landPrice;
+    public int isAvailable;
 
     public Land(int landID, String landArea, String landType ,String landAddress,int landPrice,int isAvailable) {
         this.landID = landID;
