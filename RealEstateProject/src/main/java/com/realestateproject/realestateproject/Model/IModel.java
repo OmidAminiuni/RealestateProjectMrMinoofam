@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface IModel {
     List<Land> getAllLands() throws SQLException, ClassNotFoundException;
+    List<Owner> getAllOwners() throws SQLException, ClassNotFoundException;
     List<Client> getAllClient();
     Land getLandById(int id) throws SQLException;
     Client getClientById(int id) throws SQLException;

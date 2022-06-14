@@ -23,7 +23,7 @@ public class Model implements IModel{
             rs = statement.executeQuery(query1);
             Land land;
             while (rs.next()) {
-                land = new Land(rs.getInt("landID"), rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("landPrice"),rs.getInt("isAvailable"));
+                land = new Land(rs.getInt("landID"),rs.getString("ownerName"),  rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("landPrice"),rs.getString("date"),rs.getInt("isAvailable"));
                 landsList.add(land);
             }
         } catch (Exception e) {
@@ -31,6 +31,24 @@ public class Model implements IModel{
             return landsList;
         }
         return landsList;
+    }
+
+    @Override
+    public List<Owner> getAllOwners() throws SQLException, ClassNotFoundException {
+        ArrayList<Owner> ownersList = new ArrayList<>();
+        try {
+            String query1 = "SELECT * FROM owners";
+            rs = statement.executeQuery(query1);
+            Owner owner;
+            while (rs.next()) {
+                owner = new Owner(rs.getInt("ownerID"),rs.getString("ownerName"),rs.getString("ownerFather"),rs.getString("ownerCardIdPath"));
+                ownersList.add(owner);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return ownersList;
+        }
+        return ownersList;
     }
 
     @Override
@@ -57,7 +75,7 @@ public class Model implements IModel{
         rs = statement.executeQuery(query1);
         Land land = null;
         while (rs.next()) {
-            land = new Land(rs.getInt("landID"), rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("isAvailable"),rs.getInt("isAvailable"));
+            land = new Land(rs.getInt("landID"),rs.getString("ownerName"),  rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("landPrice"),rs.getString("date"),rs.getInt("isAvailable"));
         }
         return land;
     }
@@ -87,7 +105,7 @@ public class Model implements IModel{
 
     @Override
     public void updateLand(Land land) throws SQLException {
-        String query = String.format("UPDATE lands SET landArea = '%s' , landType = '%s',landAddress = '%s',landPrice = %s, isAvailable = %s WHERE landID = %s ;",land.getLandArea(),land.getLandType() ,land.getLandAddress() ,land.getLandPrice() ,land.getIsAvailable() ,land.getLandID());
+        String query = String.format("UPDATE lands SET ownerName = '%s', landArea = '%s' , landType = '%s',landAddress = '%s',landPrice = %s, date = '%s' ,isAvailable = %s WHERE landID = %s ;",land.getOwnerName(),land.getLandArea(),land.getLandType() ,land.getLandAddress() ,land.getLandPrice() ,land.getDate(),land.getIsAvailable() ,land.getLandID());
         PreparedStatement pst = connection.prepareStatement(query);
         pst.executeUpdate();
     }

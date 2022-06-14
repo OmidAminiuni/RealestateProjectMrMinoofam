@@ -2,10 +2,12 @@ package com.realestateproject.realestateproject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.realestateproject.realestateproject.Model.Client;
 import com.realestateproject.realestateproject.Model.Land;
+import com.realestateproject.realestateproject.Model.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SecondaryController implements Initializable{
+    Model db = new Model();
     
     public TableView<Land> tableView1;
     public TableColumn<Land,String> owner;
@@ -24,6 +27,9 @@ public class SecondaryController implements Initializable{
     public TableColumn<Land,String> address;
     public TableColumn<Land, Integer> price;
     public TableColumn<Land,String> date;
+
+    public SecondaryController() throws SQLException {
+    }
 
 
     @FXML
@@ -43,16 +49,24 @@ public class SecondaryController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         myChoiceBox.getItems().addAll(type);
-//        owner.setCellValueFactory(new PropertyValueFactory<>("landArea"));
+        owner.setCellValueFactory(new PropertyValueFactory<>("ownerName"));
         area.setCellValueFactory(new PropertyValueFactory<>("landArea"));
         Type.setCellValueFactory(new PropertyValueFactory<>("landType"));
         address.setCellValueFactory(new PropertyValueFactory<>("landAddress"));
         price.setCellValueFactory(new PropertyValueFactory<>("landPrice"));
-        //date.setCellValueFactory(new PropertyValueFactory<>("ProductQuantity"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-        ObservableList<Land> observableList = FXCollections.observableArrayList(
-                new Land(1,"2500","land","west",1000,1)
-        );
+        ObservableList<Land> observableList = null;
+        try {
+            observableList = FXCollections.observableArrayList(
+//                    new Land(1,"2500","land","west",1000,1)
+                    db.getAllLands()
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         tableView1.setItems(observableList);
     }
 
