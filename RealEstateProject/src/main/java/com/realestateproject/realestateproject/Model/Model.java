@@ -59,7 +59,7 @@ public class Model implements IModel{
             rs = statement.executeQuery(query1);
             Client client;
             while (rs.next()) {
-                client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"), rs.getString("clientFatherName"),rs.getString("clientCardPic"));
+                client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"), rs.getString("clientFatherName"),rs.getString("clientCardPic"),rs.getInt("isDelete"));
                 clientsList.add(client);
             }
         } catch (Exception e) {
@@ -67,6 +67,24 @@ public class Model implements IModel{
             return clientsList;
         }
         return clientsList;
+    }
+
+    @Override
+    public List<Transaction> getAllTransaction() {
+        ArrayList<Transaction> transactionsList = new ArrayList<>();
+        try {
+            String query1 = "SELECT * FROM transactions ";
+            rs = statement.executeQuery(query1);
+            Transaction transaction;
+            while (rs.next()) {
+                transaction = new Transaction(rs.getInt("transactionID"), rs.getString("transactionOwner"), rs.getString("transactionBuyer"), rs.getString("transactionAddress"),rs.getString("transactionPrice"));
+                transactionsList.add(transaction);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return transactionsList;
+        }
+        return transactionsList;
     }
 
     @Override
@@ -86,7 +104,7 @@ public class Model implements IModel{
         rs = statement.executeQuery(query1);
         Client client = null;
         while (rs.next()) {
-            client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"), rs.getString("clientFatherName"), rs.getString("clientCardPic"));
+            client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"), rs.getString("clientFatherName"), rs.getString("clientCardPic"), rs.getInt("isDelete"));
         }
         return client;
     }
@@ -99,7 +117,13 @@ public class Model implements IModel{
 
     @Override
     public void insertClient(Client client) throws SQLException {
-        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO clients (landID ,clientName,clientFatherName,clientCardPic) VALUES ('%s','%s','%s','%s');",client.getLandID(),client.getClientName(),client.getClientFatherName(),client.getClientCardPic()));
+        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO clients (landID ,clientName,clientFatherName,clientCardPic,isDelete) VALUES ('%s','%s','%s','%s','%s');",client.getLandID(),client.getClientName(),client.getClientFatherName(),client.getClientCardPic(),client.getIsDelete()));
+        pst.executeUpdate();
+    }
+
+    @Override
+    public void insertTransaction(Transaction transaction) throws SQLException {
+        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO transactions (transactionOwner,transactionBuyer,transactionAddress,transactionPrice) VALUES ('%s','%s','%s','%s');",transaction.getTransactionOwner(),transaction.getTransactionBuyer(),transaction.getTransactionAddress(),transaction.getTransactionPrice()));
         pst.executeUpdate();
     }
 

@@ -12,11 +12,13 @@ public class Main {
         ArrayList<Land> list = (ArrayList<Land>) db.getAllLands();
         ArrayList<Client> clientList = (ArrayList<Client>) db.getAllClient();
         ArrayList<Owner> ownerslist = (ArrayList<Owner>) db.getAllOwners();
+        ArrayList<Transaction> transactionlist = (ArrayList<Transaction>) db.getAllTransaction();
         //ystem.out.println(list.get(2).getLandNumber());
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getLandAddress());
         }
         System.out.println("----------------------");
+        System.out.println(transactionlist.get(0).getTransactionOwner());
         System.out.println(clientList.get(0).getClientName());
         System.out.println(ownerslist.get(1).getOwnerName());
         System.out.println(list.get(1).getLandAddress());

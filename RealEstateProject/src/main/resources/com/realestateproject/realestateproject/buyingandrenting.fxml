@@ -84,7 +84,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="370.0" layoutY="137.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="ChoiceBox" layoutX="370.0" layoutY="137.0" prefWidth="150.0" />
       <Label layoutX="289.0" layoutY="135.0" text="Type">
          <font>
             <Font name="System Bold" size="20.0" />
@@ -108,8 +108,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="286.0" layoutY="447.0" prefHeight="35.0" prefWidth="200.0" promptText="Final Price in $" />
-      <Button layoutX="304.0" layoutY="501.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="226.0" style="-fx-background-color: #09ff00;" text="Transaction Register">
+      <TextField fx:id="txtPriceT" layoutX="286.0" layoutY="447.0" prefHeight="35.0" prefWidth="200.0" promptText="Final Price in $" />
+      <Button layoutX="304.0" layoutY="501.0" mnemonicParsing="false" onAction="#insertTransaction" prefHeight="56.0" prefWidth="226.0" style="-fx-background-color: #09ff00;" text="Transaction Register">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -129,31 +129,31 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="385.0" layoutY="264.0" prefHeight="35.0" prefWidth="150.0" promptText="Owner's full name" />
+      <TextField fx:id="txtOwnerT" layoutX="385.0" layoutY="264.0" prefHeight="35.0" prefWidth="150.0" promptText="Owner's full name" />
       <Label layoutX="287.0" layoutY="313.0" text="Buyer/Renter">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="385.0" layoutY="306.0" prefHeight="35.0" prefWidth="150.0" promptText="Buyer/Renter's full name" />
+      <TextField fx:id="txtBuyerT" layoutX="385.0" layoutY="306.0" prefHeight="35.0" prefWidth="150.0" promptText="Buyer/Renter's full name" />
       <Label layoutX="297.0" layoutY="354.0" text="Address">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField alignment="TOP_CENTER" layoutX="386.0" layoutY="348.0" prefHeight="74.0" prefWidth="150.0" promptText="Type the Address" />
-      <TableView layoutX="588.0" layoutY="465.0" prefHeight="102.0" prefWidth="448.0">
+      <TextField fx:id="txtAddressT" alignment="TOP_CENTER" layoutX="386.0" layoutY="348.0" prefHeight="74.0" prefWidth="150.0" promptText="Type the Address" />
+      <TableView fx:id="tableViewTransaction" layoutX="588.0" layoutY="412.0" prefHeight="155.0" prefWidth="448.0">
          <columns>
-            <TableColumn prefWidth="100.00006103515625" text="Owner" />
-            <TableColumn prefWidth="95.99993896484375" text="Buyer/Renter" />
-            <TableColumn minWidth="0.0" prefWidth="108.7999267578125" text="Address" />
-            <TableColumn minWidth="0.0" prefWidth="141.5999755859375" text="Final Price" />
+            <TableColumn fx:id="transactionOwner" prefWidth="100.00006103515625" text="Owner" />
+            <TableColumn fx:id="transactionBuyer" prefWidth="95.99993896484375" text="Buyer/Renter" />
+            <TableColumn fx:id="transactionAddress" minWidth="0.0" prefWidth="108.7999267578125" text="Address" />
+            <TableColumn fx:id="transactionPrice" minWidth="0.0" prefWidth="141.5999755859375" text="Final Price" />
          </columns>
       </TableView>
-      <TableView fx:id="tableViewClient" layoutX="655.0" layoutY="278.0" prefHeight="178.0" prefWidth="314.0">
+      <TableView fx:id="tableViewClient" layoutX="587.0" layoutY="278.0" prefHeight="126.0" prefWidth="448.0">
          <columns>
-            <TableColumn fx:id="clientName" prefWidth="153.5999755859375" text="Client" />
-            <TableColumn fx:id="clientFather" prefWidth="159.99997558593748" text="Client's Father" />
+            <TableColumn fx:id="clientName" prefWidth="226.0" text="Client" />
+            <TableColumn fx:id="clientFather" prefWidth="221.0" text="Client's Father" />
          </columns>
       </TableView>
    </children>

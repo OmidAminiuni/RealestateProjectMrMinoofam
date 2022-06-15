@@ -100,7 +100,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="536.0" layoutY="497.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="109.0" style="-fx-background-color: #f44336;" text="Remove">
+      <Button layoutX="537.0" layoutY="496.0" mnemonicParsing="false" onAction="#removeLand" prefHeight="43.0" prefWidth="109.0" style="-fx-background-color: #f44336;" text="Remove">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

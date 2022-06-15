@@ -82,17 +82,12 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <ImageView fitHeight="37.0" fitWidth="85.0" layoutX="304.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="37.0" fitWidth="85.0" layoutX="304.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Office-Client-Male-Light-icon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="85.0" layoutX="304.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Office-Client-Male-Light-icon.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="281.0" layoutY="509.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #09ff00;" text="Add">
+      <Button layoutX="281.0" layoutY="509.0" mnemonicParsing="false" onAction="#insertClient" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #09ff00;" text="Add">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -102,18 +97,18 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="520.0" layoutY="509.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="109.0" style="-fx-background-color: #f44336;" text="Remove">
+      <Button layoutX="520.0" layoutY="509.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="43.0" prefWidth="109.0" style="-fx-background-color: #f44336;" text="Remove">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Label layoutX="307.0" layoutY="184.0" text="Owner">
+      <Label layoutX="348.0" layoutY="190.0" text="Client">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="307.0" layoutY="233.0" prefHeight="35.0" prefWidth="150.0" promptText="Owner's full name" />
-      <TextField layoutX="300.0" layoutY="365.0" prefHeight="35.0" prefWidth="163.0" promptText="Owner Father's name" />
+      <TextField fx:id="txtClient" layoutX="307.0" layoutY="233.0" prefHeight="35.0" prefWidth="150.0" promptText="Client's full name" />
+      <TextField fx:id="txtClientFather" layoutX="300.0" layoutY="365.0" prefHeight="35.0" prefWidth="163.0" promptText="Client Father's name" />
       <Separator layoutX="281.0" layoutY="288.0" prefHeight="22.0" prefWidth="301.0" />
       <TableView fx:id="tableViewClient1" layoutX="594.0" layoutY="112.0" prefHeight="370.0" prefWidth="423.0">
          <columns>
@@ -121,10 +116,15 @@
             <TableColumn fx:id="clientFather1" minWidth="0.0" prefWidth="208.0" text="Client's Father" />
          </columns>
       </TableView>
-      <Label layoutX="307.0" layoutY="319.0" text="Owner Father's name">
+      <Label layoutX="349.0" layoutY="323.0" text="Client Father's name">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <ImageView fitHeight="37.0" fitWidth="85.0" layoutX="304.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Office-Client-Male-Light-icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

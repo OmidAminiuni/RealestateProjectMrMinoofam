@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
@@ -18,6 +19,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Clients implements Initializable {
+    public TextField txtClient;
+    public TextField txtClientFather;
     Model db = new Model();
 
     public TableView<Client> tableViewClient1;
@@ -50,5 +53,12 @@ public class Clients implements Initializable {
                 db.getAllClient()
         );
         tableViewClient1.setItems(observableListClient);
+    }
+
+    public void insertClient(ActionEvent actionEvent) throws SQLException {
+        db.insertClient(new Client(1,1,txtClient.getText(),txtClientFather.getText(),"c://",0));
+    }
+
+    public void deleteClient(ActionEvent actionEvent) {
     }
 }

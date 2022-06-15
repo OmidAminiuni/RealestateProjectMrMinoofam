@@ -8,13 +8,15 @@ public class Client {
     String clientName;
     String clientFatherName;
     String clientCardPic;
+    int isDelete;
 
-    public Client(int clientID, int landID, String clientName, String clientFatherName, String clientCardPic) {
+    public Client(int clientID, int landID, String clientName, String clientFatherName, String clientCardPic, int isDelete) {
         this.clientID = clientID;
         this.landID = landID;
         this.clientName = clientName;
         this.clientFatherName = clientFatherName;
         this.clientCardPic = clientCardPic;
+        this.isDelete = isDelete;
     }
 
     public int getClientID() {
@@ -35,5 +37,9 @@ public class Client {
 
     public String getClientCardPic() {
         return clientCardPic;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
     }
 }

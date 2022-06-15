@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class SecondaryController implements Initializable{
     public TextField txtOwner;
@@ -84,6 +85,11 @@ public class SecondaryController implements Initializable{
 
 
     public void insertLand(ActionEvent actionEvent) throws SQLException {
+        String date = txtDate.getValue().getYear() +"/"+ txtDate.getValue().getMonth() + "/" + txtDate.getValue().getDayOfYear();
         db.insertLand(new Land(1,txtOwner.getText(),txtArea.getText(),String.valueOf(myChoiceBox.getValue()),txtAddress.getText(),Integer.parseInt(txtPrice.getText()),String.valueOf(txtDate.getValue()),1,0));
     }
+
+    public void removeLand(ActionEvent actionEvent) {
+    }
+
 }
