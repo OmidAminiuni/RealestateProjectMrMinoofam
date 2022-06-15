@@ -9,8 +9,9 @@ public class Land {
     public int landPrice;
     public String date;
     public int isAvailable;
+    public int isDelete;
 
-    public Land(int landID, String ownerName, String landArea, String landType, String landAddress, int landPrice, String date, int isAvailable) {
+    public Land(int landID, String ownerName, String landArea, String landType, String landAddress, int landPrice, String date, int isAvailable, int isDelete) {
         this.landID = landID;
         this.ownerName = ownerName;
         this.landArea = landArea;
@@ -19,6 +20,7 @@ public class Land {
         this.landPrice = landPrice;
         this.date = date;
         this.isAvailable = isAvailable;
+        this.isDelete = isDelete;
     }
 
     public int getLandID() {
@@ -51,6 +53,10 @@ public class Land {
 
     public int getIsAvailable() {
         return isAvailable;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
     }
 }
 

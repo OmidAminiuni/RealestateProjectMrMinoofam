@@ -10,14 +10,19 @@ import com.realestateproject.realestateproject.Model.Land;
 import com.realestateproject.realestateproject.Model.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SecondaryController implements Initializable{
+    public TextField txtOwner;
+    public TextField txtArea;
+    //public ChoiceBox myChoiceBox; //type choice box (txtType) down
+    public TextField txtAddress;
+    public TextField txtPrice;
+    public DatePicker txtDate;
     Model db = new Model();
     
     public TableView<Land> tableView1;
@@ -42,7 +47,7 @@ public class SecondaryController implements Initializable{
     }
     
    
-    @FXML private ChoiceBox<String> myChoiceBox;
+    @FXML private ChoiceBox<String> myChoiceBox; //txtType
 	
     private String[] type = {"Land","New-built House","Older than 5YO House"};
 
@@ -76,5 +81,9 @@ public class SecondaryController implements Initializable{
     private void switchToBar() throws IOException {
         App.setRoot("buyingandrenting");
     }
-   
+
+
+    public void insertLand(ActionEvent actionEvent) throws SQLException {
+        db.insertLand(new Land(1,txtOwner.getText(),txtArea.getText(),String.valueOf(myChoiceBox.getValue()),txtAddress.getText(),Integer.parseInt(txtPrice.getText()),String.valueOf(txtDate.getValue()),1,0));
+    }
 }

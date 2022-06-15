@@ -23,7 +23,7 @@ public class Model implements IModel{
             rs = statement.executeQuery(query1);
             Land land;
             while (rs.next()) {
-                land = new Land(rs.getInt("landID"),rs.getString("ownerName"),  rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("landPrice"),rs.getString("date"),rs.getInt("isAvailable"));
+                land = new Land(rs.getInt("landID"),rs.getString("ownerName"),  rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("landPrice"),rs.getString("date"),rs.getInt("isAvailable"),rs.getInt("isDelete"));
                 landsList.add(land);
             }
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class Model implements IModel{
             rs = statement.executeQuery(query1);
             Client client;
             while (rs.next()) {
-                client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"),rs.getString("clientCardPic"));
+                client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"), rs.getString("clientFatherName"),rs.getString("clientCardPic"));
                 clientsList.add(client);
             }
         } catch (Exception e) {
@@ -75,7 +75,7 @@ public class Model implements IModel{
         rs = statement.executeQuery(query1);
         Land land = null;
         while (rs.next()) {
-            land = new Land(rs.getInt("landID"),rs.getString("ownerName"),  rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("landPrice"),rs.getString("date"),rs.getInt("isAvailable"));
+            land = new Land(rs.getInt("landID"),rs.getString("ownerName"),  rs.getString("landArea"), rs.getString("landType"),rs.getString("landAddress"),rs.getInt("landPrice"),rs.getString("date"),rs.getInt("isAvailable"),rs.getInt("isDelete"));
         }
         return land;
     }
@@ -86,20 +86,20 @@ public class Model implements IModel{
         rs = statement.executeQuery(query1);
         Client client = null;
         while (rs.next()) {
-            client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"), rs.getString("clientCardPic"));
+            client = new Client(rs.getInt("clientID"), rs.getInt("landID"), rs.getString("clientName"), rs.getString("clientFatherName"), rs.getString("clientCardPic"));
         }
         return client;
     }
 
     @Override
     public void insertLand(Land land) throws SQLException {
-        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO lands ( landArea ,landType,landAddress,landPrice,isAvailable) VALUES (%s,'%s','%s',%s,%s);", land.getLandArea(),land.getLandType(),land.getLandAddress(),land.getLandPrice(),land.getIsAvailable()));
+        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO lands (ownerName , landArea ,landType,landAddress,landPrice,date,isAvailable,isDelete) VALUES ('%s', %s,'%s','%s',%s,%s,'%s','%s');",land.getOwnerName(), land.getLandArea(),land.getLandType(),land.getLandAddress(),land.getLandPrice(),land.getDate(),land.getIsAvailable(), land.getIsDelete()));
         pst.executeUpdate();
     }
 
     @Override
     public void insertClient(Client client) throws SQLException {
-        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO clients (landID ,clientName,clientCardPic) VALUES ('%s','%s','%s');",client.getLandID(),client.getClientName(),client.getClientCardPic()));
+        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO clients (landID ,clientName,clientFatherName,clientCardPic) VALUES ('%s','%s','%s','%s');",client.getLandID(),client.getClientName(),client.getClientFatherName(),client.getClientCardPic()));
         pst.executeUpdate();
     }
 
@@ -112,7 +112,7 @@ public class Model implements IModel{
 
     @Override
     public void updateClient(Client client) throws SQLException {
-        String query = String.format("UPDATE clients SET landID = %s , clientName = '%s', clientCardPic = '%s' WHERE clientID = %s ;",client.getLandID(),client.getClientName() ,client.getClientCardPic(), client.getClientID());
+        String query = String.format("UPDATE clients SET landID = %s , clientName = '%s', clientName = '%s', clientCardPic = '%s' WHERE clientID = %s ;",client.getLandID(),client.getClientName(),client.getClientFatherName() ,client.getClientCardPic(), client.getClientID());
         PreparedStatement pst = connection.prepareStatement(query);
         pst.executeUpdate();
     }

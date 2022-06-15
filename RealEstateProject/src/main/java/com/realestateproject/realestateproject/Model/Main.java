@@ -10,12 +10,14 @@ public class Main {
         Model db = new Model();
         //System.out.println(db.getAllLands().get(1).getLandNumber().toString());
         ArrayList<Land> list = (ArrayList<Land>) db.getAllLands();
+        ArrayList<Client> clientList = (ArrayList<Client>) db.getAllClient();
         ArrayList<Owner> ownerslist = (ArrayList<Owner>) db.getAllOwners();
         //ystem.out.println(list.get(2).getLandNumber());
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getLandAddress());
         }
         System.out.println("----------------------");
+        System.out.println(clientList.get(0).getClientName());
         System.out.println(ownerslist.get(1).getOwnerName());
         System.out.println(list.get(1).getLandAddress());
         System.out.println(list.get(2).getLandAddress());

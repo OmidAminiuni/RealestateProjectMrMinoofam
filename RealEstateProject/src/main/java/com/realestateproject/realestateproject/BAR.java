@@ -4,7 +4,6 @@ package com.realestateproject.realestateproject;
 import com.realestateproject.realestateproject.Model.Client;
 import com.realestateproject.realestateproject.Model.Land;
 import com.realestateproject.realestateproject.Model.Model;
-import com.realestateproject.realestateproject.Model.Owner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,13 +28,9 @@ public class BAR implements Initializable {
     public TableColumn<Land, Integer> price;
     public TableColumn<Land,String> date;
 
-    public TableView<Owner> tableViewOwner;
-    public TableColumn<Land,String> ownerName;
-    public TableColumn<Land,String> ownerFather;
-
     public TableView<Client> tableViewClient;
     public TableColumn<Land,String> clientName;
-    public TableColumn<Land,String> clientFatherName;
+    public TableColumn<Land,String> clientFather;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,11 +41,8 @@ public class BAR implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("landPrice"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-        ownerName.setCellValueFactory(new PropertyValueFactory<>("ownerName"));
-        ownerFather.setCellValueFactory(new PropertyValueFactory<>("ownerFather"));
-
-        ownerName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
-
+        clientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
+        clientFather.setCellValueFactory(new PropertyValueFactory<>("clientFatherName"));
 
         ObservableList<Client> observableListClient = null;
         observableListClient = FXCollections.observableArrayList(
@@ -58,18 +50,6 @@ public class BAR implements Initializable {
         );
         tableViewClient.setItems(observableListClient);
 
-        ObservableList<Owner> observableListOwner = null;
-        try {
-            observableListOwner = FXCollections.observableArrayList(
-//                    new Owner(1,"arvin","salehi","c://")
-                    db.getAllOwners()
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        tableViewOwner.setItems(observableListOwner);
 
         ObservableList<Land> observableList = null;
         try {
