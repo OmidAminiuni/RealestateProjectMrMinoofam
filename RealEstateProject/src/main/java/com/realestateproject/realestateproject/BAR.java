@@ -45,9 +45,7 @@ public class BAR implements Initializable {
     public TableColumn<Land,String> clientName;
     public TableColumn<Land,String> clientFather;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ChoiceBox.getItems().addAll(type);
+    public void updateTableBar(){
         owner.setCellValueFactory(new PropertyValueFactory<>("ownerName"));
         area.setCellValueFactory(new PropertyValueFactory<>("landArea"));
         Type.setCellValueFactory(new PropertyValueFactory<>("landType"));
@@ -91,6 +89,11 @@ public class BAR implements Initializable {
         }
         tableViewBar.setItems(observableList);
     }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ChoiceBox.getItems().addAll(type);
+        updateTableBar();
+    }
 
     @FXML private ChoiceBox<String> ChoiceBox;
 
@@ -114,5 +117,6 @@ public class BAR implements Initializable {
 
     public void insertTransaction(ActionEvent actionEvent) throws SQLException {
         db.insertTransaction(new Transaction(1,txtOwnerT.getText(),txtBuyerT.getText(),txtAddressT.getText(),txtPriceT.getText()));
+        updateTableBar();
     }
 }

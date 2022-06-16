@@ -43,8 +43,7 @@ public class Clients implements Initializable {
         App.setRoot("secondary");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void updateTableClient(){
         clientName1.setCellValueFactory(new PropertyValueFactory<>("clientName"));
         clientFather1.setCellValueFactory(new PropertyValueFactory<>("clientFatherName"));
 
@@ -54,11 +53,18 @@ public class Clients implements Initializable {
         );
         tableViewClient1.setItems(observableListClient);
     }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        updateTableClient();
+    }
 
     public void insertClient(ActionEvent actionEvent) throws SQLException {
         db.insertClient(new Client(1,1,txtClient.getText(),txtClientFather.getText(),"c://",0));
+        updateTableClient();
     }
 
-    public void deleteClient(ActionEvent actionEvent) {
+    public void deleteClient(ActionEvent actionEvent) throws SQLException {
+        db.deleteClient(tableViewClient1.getSelectionModel().getSelectedItem().getClientID());
+        updateTableClient();
     }
 }

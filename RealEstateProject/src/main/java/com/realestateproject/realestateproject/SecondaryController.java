@@ -52,9 +52,7 @@ public class SecondaryController implements Initializable{
 	
     private String[] type = {"Land","New-built House","Older than 5YO House"};
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        myChoiceBox.getItems().addAll(type);
+    public void updateTableLands(){
         owner.setCellValueFactory(new PropertyValueFactory<>("ownerName"));
         area.setCellValueFactory(new PropertyValueFactory<>("landArea"));
         Type.setCellValueFactory(new PropertyValueFactory<>("landType"));
@@ -76,6 +74,12 @@ public class SecondaryController implements Initializable{
         tableView1.setItems(observableList);
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        myChoiceBox.getItems().addAll(type);
+        updateTableLands();
+    }
+
 
     
     @FXML
@@ -87,9 +91,12 @@ public class SecondaryController implements Initializable{
     public void insertLand(ActionEvent actionEvent) throws SQLException {
         String date = txtDate.getValue().getYear() +"/"+ txtDate.getValue().getMonth() + "/" + txtDate.getValue().getDayOfYear();
         db.insertLand(new Land(1,txtOwner.getText(),txtArea.getText(),String.valueOf(myChoiceBox.getValue()),txtAddress.getText(),Integer.parseInt(txtPrice.getText()),String.valueOf(txtDate.getValue()),1,0));
+        updateTableLands();
     }
 
-    public void removeLand(ActionEvent actionEvent) {
+    public void removeLand(ActionEvent actionEvent) throws SQLException {
+        db.deleteLand(tableView1.getSelectionModel().getSelectedItem().getLandID());
+        updateTableLands();
     }
 
 }
