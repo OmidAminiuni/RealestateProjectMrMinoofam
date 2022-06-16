@@ -111,7 +111,7 @@ public class Model implements IModel{
 
     @Override
     public void insertLand(Land land) throws SQLException {
-        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO lands (ownerName , landArea ,landType,landAddress,landPrice,date,isAvailable,isDelete) VALUES ('%s', %s,'%s','%s',%s,%s,'%s','%s');",land.getOwnerName(), land.getLandArea(),land.getLandType(),land.getLandAddress(),land.getLandPrice(),land.getDate(),land.getIsAvailable(), land.getIsDelete()));
+        PreparedStatement pst = connection.prepareStatement(String.format("INSERT INTO lands (ownerName , landArea ,landType,landAddress,landPrice,date,isAvailable,isDelete) VALUES ('%s', %s,'%s','%s',%s,'%s','%s','%s');",land.getOwnerName(), land.getLandArea(),land.getLandType(),land.getLandAddress(),land.getLandPrice(),land.getDate(),land.getIsAvailable(), land.getIsDelete()));
         pst.executeUpdate();
     }
 

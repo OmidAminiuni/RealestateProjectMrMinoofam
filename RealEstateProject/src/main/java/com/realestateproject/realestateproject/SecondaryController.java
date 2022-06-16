@@ -3,6 +3,8 @@ package com.realestateproject.realestateproject;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import com.realestateproject.realestateproject.Model.Client;
@@ -89,8 +91,9 @@ public class SecondaryController implements Initializable{
 
 
     public void insertLand(ActionEvent actionEvent) throws SQLException {
-        String date = txtDate.getValue().getYear() +"/"+ txtDate.getValue().getMonth() + "/" + txtDate.getValue().getDayOfYear();
-        db.insertLand(new Land(1,txtOwner.getText(),txtArea.getText(),String.valueOf(myChoiceBox.getValue()),txtAddress.getText(),Integer.parseInt(txtPrice.getText()),String.valueOf(txtDate.getValue()),1,0));
+        LocalDate date = txtDate.getValue();
+        String formatDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        db.insertLand(new Land(1,txtOwner.getText(),txtArea.getText(),String.valueOf(myChoiceBox.getValue()),txtAddress.getText(),Integer.parseInt(txtPrice.getText()),formatDate,1,0));
         updateTableLands();
     }
 
